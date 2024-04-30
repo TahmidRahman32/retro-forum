@@ -4,7 +4,7 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Assignment-6</title>
-      <link rel="stylesheet" href="style/style.css">
+      <link rel="stylesheet" href="style/style.css" />
       <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
       <script src="https://cdn.tailwindcss.com"></script>
       <script src="https://kit.fontawesome.com/9842331c01.js" crossorigin="anonymous"></script>
@@ -13,7 +13,7 @@
       <header>
          <div class="navbar bg-base-100">
             <div class="navbar-start">
-               <a class=" text-3xl font-extrabold mulish">ReTro</a>
+               <a class="text-3xl font-extrabold mulish">ReTro</a>
             </div>
             <div class="navbar-center"></div>
             <div class="navbar-end gap-4">
@@ -21,17 +21,60 @@
                <i title="tooltip" class="fa-solid fa-pen bg-gray-100 py-2 px-2 rounded-full border"></i>
                <i title="user" class="fa-solid fa-user-plus bg-gray-100 py-2 px-2 rounded-full border"></i>
                <i title="flag" class="fa-solid fa-flag bg-gray-100 py-2 px-2 rounded-full border"></i>
-               <button class="bg-[#797DFC] px-5 py-2 rounded-2xl text-white">Sign In</button>
-              
+               <button class="btn bg-[#797DFC] rounded-2xl text-white">Sign In</button>
             </div>
          </div>
       </header>
 
       <main>
-         <h2>Main</h2>
+         <section class="bg-[#12132Dcc] bg-no-repeat bg-cover bgImg md:flex text-center justify-center items-center gap-28 text-white md:py-28 md:px-4 mx-2 rounded-3xl md:mx-4">
+            <div class="">
+               <h1 class="md:text-6xl text-3xl font-bold mulish my-b">
+                  Welcome to the <br />
+                  <span class="bg-gradient-to-r from-indigo-950 to-danger bg-clip-text text-transparent">ReTro</span> Forum
+               </h1>
+               <p>Share your favorite opinion and win and wp forum coffee mug!</p>
+               <div class="join md:mt-8">
+                  <input class="input input-bordered join-item" placeholder="Search" />
+                  <button class="btn join-item rounded-r-full bg-[#12132D] text-white border-0 hover:text-black">Search</button>
+               </div>
+            </div>
+            <div class="bg-white my-8 text-black md:px-12 px-4 md:py-16 py-6 space-y-3 rounded-xl">
+               <div class="flex items-center md:gap-8 justify-between">
+                  <p>Registered Users</p>
+                  <p>01</p>
+               </div>
+               <div class="flex items-center gap-8 justify-between">
+                  <p>Forum</p>
+                  <p>05</p>
+               </div>
+               <div class="flex items-center gap-8 justify-between">
+                  <p>Topics</p>
+                  <p>01</p>
+               </div>
+               <div class="flex items-center gap-8 justify-between">
+                  <p>Replies</p>
+                  <p>01</p>
+               </div>
+            </div>
+         </section>
+         <section>
+            <div class="text-center my-8">
+               <h2 class="text-3xl font-bold mb-2">Let’s Discuss</h2>
+               <p class="md:px-96">Yes, you can run unit tests and view the results directly within the app. The integrated testing features allow for a streamlined .</p>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+               <div id="card-contain" class="col-span-2 space-y-3"></div>
+               <div id="count-read" class="col-span-1"></div>
+            </div>
+            <div>
+               <p>comedy</p>
+            </div>
+         </section>
       </main>
       <footer>
          <h3>Footer</h3>
       </footer>
+      <script src="js/index.js"></script>
    </body>
 </html>

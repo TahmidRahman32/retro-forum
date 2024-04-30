@@ -5,3 +5,8 @@
   font-optical-sizing: auto;
  
 }
+.bgImg{
+   background: url('../images/bgbanner.png');
+   /* background-repeat: no-repeat;
+   background-size: cover; */
+}
