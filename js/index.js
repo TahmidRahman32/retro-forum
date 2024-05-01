@@ -12,7 +12,7 @@ const searchDataDisplay = (posts) => {
 
    // console.log(cardContainer);
    posts.forEach((post) => {
-      console.log(post);
+      // console.log(post);
       const { category, title, description, posted_time, comment_count, author, image, isActive, view_count, id } = post;
 
       const div = document.createElement("div");
@@ -64,6 +64,7 @@ const searchDataDisplay = (posts) => {
          active.classList.add("bg-red-500");
       }
    });
+   loadingShow(false)
 };
 
 const allDataLoader = () => {
@@ -85,15 +86,15 @@ const readCount = (id) => {
    // add();
    allDataLoader();
 
-   console.log(id);
+   // console.log(id);
 };
 
 const searchHandle = () => {
+   loadingShow(true)
    const inputField = document.getElementById("search-field").value;
    // console.log(typeof inputField);
    inputField.innerHTML = "";
    if (isNaN(inputField) || (!isNaN(inputField) && inputField > 9)) {
-      console.log("string");
       searchDataLoader(inputField);
    } else {
       console.log("add");
@@ -137,5 +138,15 @@ latestDataDisplay = (items) => {
       latestCard.appendChild(div);
    });
 };
+
+const loadingShow =(isLoading)=>{
+   const loadingId = document.getElementById("loading");
+   if(isLoading){
+      loadingId.classList.remove('hidden')
+   }
+   else{
+      loadingId.classList.add('hidden')
+   }
+}
 latestCardData();
 searchDataLoader("comedy");
