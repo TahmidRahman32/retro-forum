@@ -57,7 +57,6 @@ const searchDataDisplay = (posts) => {
       cardContainer.appendChild(div);
 
       if (isActive) {
-         console.log("up");
          const active = document.getElementById("active-card");
          active.classList.add("bg-green-600");
       } else {
@@ -91,9 +90,15 @@ const readCount = (id) => {
 
 const searchHandle = () => {
    const inputField = document.getElementById("search-field").value;
+   // console.log(typeof inputField);
    inputField.innerHTML = "";
-   
-   searchDataLoader(inputField);
+   if (isNaN(inputField) || (!isNaN(inputField) && inputField > 9)) {
+      console.log("string");
+      searchDataLoader(inputField);
+   } else {
+      console.log("add");
+      alert("please existing category");
+   }
 };
 
 const latestCardData = async () => {
