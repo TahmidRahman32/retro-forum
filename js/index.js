@@ -13,7 +13,7 @@ const searchDataDisplay = (posts) => {
    // console.log(cardContainer);
    posts.forEach((post) => {
       console.log(post);
-      const { category, title, description, posted_time, comment_count, author, image, view_count, id } = post;
+      const { category, title, description, posted_time, comment_count, author, image, isActive, view_count, id } = post;
 
       const div = document.createElement("div");
       div.classList = "card bg-base-100 shadow-xl col-span-2";
@@ -22,7 +22,7 @@ const searchDataDisplay = (posts) => {
     <div class="card card-side bg-base-100 shadow-xl p-2 ">
     
               <div class='indicator'>
-              <span id="card-pin" class="indicator-item badge bg-green-600"></span>
+              <span id="active-card" class="indicator-item badge bg-green-600"></span>
                <img class='w-16 rounded-3xl h-16 grid  bg-base-300 place-items-center' src=${image} alt="Movie" />
               </div>
                <div class="card-body ">
@@ -55,6 +55,15 @@ const searchDataDisplay = (posts) => {
             </div>
       `;
       cardContainer.appendChild(div);
+
+      if (isActive) {
+         console.log("up");
+         const active = document.getElementById("active-card");
+         active.classList.add("bg-green-600");
+      } else {
+         const active = document.getElementById("active-card");
+         active.classList.add("bg-red-500");
+      }
    });
 };
 
@@ -83,7 +92,7 @@ const readCount = (id) => {
 const searchHandle = () => {
    const inputField = document.getElementById("search-field").value;
    inputField.innerHTML = "";
-   console.log();
+   
    searchDataLoader(inputField);
 };
 
