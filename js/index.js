@@ -4,7 +4,6 @@ const searchDataLoader = async (category) => {
    searchDataDisplay(data.posts);
 };
 
-
 const searchDataDisplay = (posts) => {
    //  console.log(posts);
 
@@ -59,16 +58,16 @@ const searchDataDisplay = (posts) => {
    });
 };
 
-const allDataLoader =()=>{
-       const addDetails = document.getElementById("count-read");
-       const div = document.createElement('div');
-       div.classList = "flex justify-between px-3 py-4 bg-gray-200 rounded my-3";
-       div.innerHTML = `
+const allDataLoader = () => {
+   const addDetails = document.getElementById("count-read");
+   const div = document.createElement("div");
+   div.classList = "flex justify-between px-3 py-4 bg-gray-200 rounded my-3";
+   div.innerHTML = `
       <h2 class="font-bold text-xl">10 Kids Unaware of Their Costume</h2>
       <p><i class="fa-solid fa-eye"></i> 1568 </p>
        `;
-       addDetails.appendChild(div)
-}
+   addDetails.appendChild(div);
+};
 
 let count = 0;
 const readCount = (id) => {
@@ -126,5 +125,3 @@ latestDataDisplay = (items) => {
 };
 latestCardData();
 searchDataLoader("comedy");
-
-
