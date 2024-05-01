@@ -1,22 +1,21 @@
-const allDataLoader = async () => {
-   const res = await fetch("https://openapi.programming-hero.com/api/retro-forum/posts");
+const searchDataLoader = async (category) => {
+   const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${category}`);
    const data = await res.json();
-   allDataDisplay(data.posts);
-  
+   searchDataDisplay(data.posts);
 };
 
-const allDataDisplay = (posts) => {
-   console.log(posts);
+const searchDataDisplay = (posts) => {
+   //  console.log(posts);
    const cardContainer = document.getElementById("card-contain");
+   cardContainer.innerText = '';
 
    // console.log(cardContainer);
    posts.forEach((post) => {
       console.log(post);
-      const { category, title, description, posted_time, comment_count, author, image, isActive, view_count } = post;
-         
-     
+      const { category, title, description, posted_time, comment_count, author, image, isActive, view_count, id } = post;
+
       const div = document.createElement("div");
-      div.classList = "card bg-base-100 shadow-xl col-span-2 ";
+      div.classList = "card bg-base-100 shadow-xl col-span-2";
       div.innerHTML = `
       
     <div class="card card-side bg-base-100 shadow-xl p-2 ">
@@ -49,60 +48,86 @@ const allDataDisplay = (posts) => {
                        <p>${posted_time} min</p>
                        </div>
                        </div>
-                     <button  onclick="readCount()" class="bg-[#10B981] px-2 py-1 rounded-full"><i class="fa-solid fa-envelope"></i></button>
+                     <button onclick="readCount(${id})" class="bg-[#10B981] px-2 py-1 rounded-full"><i class="fa-solid fa-envelope"></i></button>
                   </div>
                </div>
             </div>
-
       `;
       cardContainer.appendChild(div);
-      //   const add = document.getElementById("card-pin");
-        
-      //   console.log(add.classList);
-      //   if (isActive) {
-      //    add.classList = "badge-secondary";
-      //      // isActiveId.classList.add("");
-      //    //   console.log(add.classList.remove());
-      //      //   add.classList.add("badge-secondary");
-      //      // console.log(isActive);
-      //   } 
-      //   else{
-      //    add.classList = "badge-red";
-      //   }
-      
    });
 };
 
-const readCount = (data) =>{
-  const countContain = document.getElementById("count-read");
- console.log(data);
-  const div = document.createElement('div');
-  div.innerHTML = `
-  <div class="">
-  <table class="table">
-    <!-- head -->
-    <thead>
-      <div class="flex justify-between">
-        <h3 class='text-xl'>Title</h3>
-        <p><i class="fa-solid fa-check text-green-600"></i> Mark as read ()</p>
-        
-      </div>
-    </thead>
-    <tbody>
-      <!-- row 1 -->
-      <tr class="bg-base-200">
-        <th>1</th>
-        <td></td>
-        <td>Quality Control Specialist</td>
-       
-      </tr>
-     
-     
-    </tbody>
-  </table>
-</div>
-  `;
-  countContain.appendChild(div)
-}
+// const allDataLoader = async (id)=>{
+//   const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts`);
+//    const data = await res.json();
+//    allDataDisplay(data.posts,id);
+// }
+// const allDataDisplay =(items,id)=>{
+//   const readDetails = document.getElementById("count-read");
 
-allDataLoader();
+//    items.forEach(item =>{
+//     const {id} = item;
+//      console.log(id);
+//      const div = document.createElement('div')
+//      div.classList = 'px-3';
+//      div.innerHTML = `
+//      <p>${item.title}</p>
+//      `;
+//      readDetails.appendChild(div)
+//    })
+// }
+
+let count = 0;
+const readCount = (id) => {
+   count = count + 1;
+   const IdField = document.getElementById("mark-count");
+   IdField.innerText = count;
+   // allDataLoader();
+
+   console.log(id);
+};
+
+const searchHandle = () => {
+   const inputField = document.getElementById("search-field").value;
+   inputField.innerHTML = "";
+   console.log();
+   searchDataLoader(inputField);
+};
+
+const latestCardData = async () => {
+   const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/latest-posts`);
+   const data = await res.json();
+   latestDataDisplay(data);
+};
+
+latestDataDisplay = (items) => {
+   const latestCard = document.getElementById("latest-card");
+   items.forEach((item) => {
+      console.log(item);
+
+      const div = document.createElement("div");
+
+      div.innerHTML = `
+      <div class="card  bg-base-100 shadow-xl">
+  <figure><img src=${item.cover_image} alt="Shoes" /></figure>
+  <div class="card-body">
+  <p class="text-gray-400"><i class="fa-solid fa-calendar-week"></i> ${item.author?.posted_date ? item.author?.posted_date : "No publish date"}</p>
+    <h2 class="card-title">${item.title}</h2>
+    <p>${item.description}</p>
+    <div class="card-actions mt-2">
+     <div class="flex items-center gap-3">
+      <img class='w-12 rounded-full' src=${item.profile_image} alt="" />
+      <div>
+      <p class='font-medium'>${item.author?.name}</p>
+      <p><small>${item.author?.designation || "Unknown"}</small></p>
+      
+      </div>
+     </div>
+    </div>
+  </div>
+</div>
+      `;
+      latestCard.appendChild(div)
+   });
+};
+latestCardData();
