@@ -4,26 +4,17 @@ const searchDataLoader = async (category) => {
    searchDataDisplay(data.posts);
 };
 
+
 const searchDataDisplay = (posts) => {
    //  console.log(posts);
-   
+
    const cardContainer = document.getElementById("card-contain");
-   cardContainer.innerText = '';
-    
-     
+   cardContainer.innerText = "";
+
    // console.log(cardContainer);
    posts.forEach((post) => {
-      // console.log(post);
-      const { category, title, description, posted_time, comment_count, author, image, isActive, view_count, id } = post;
-      const add = document.getElementById("card-pin");
-      
-      
-      if(isActive){
-         console.log('up');
-      }
-      else{
-         console.log('not');
-      }
+      console.log(post);
+      const { category, title, description, posted_time, comment_count, author, image, view_count, id } = post;
 
       const div = document.createElement("div");
       div.classList = "card bg-base-100 shadow-xl col-span-2";
@@ -32,7 +23,7 @@ const searchDataDisplay = (posts) => {
     <div class="card card-side bg-base-100 shadow-xl p-2 ">
     
               <div class='indicator'>
-              <span id="card-pin" class="indicator-item badge bg-neutral-800"></span>
+              <span id="card-pin" class="indicator-item badge bg-green-600"></span>
                <img class='w-16 rounded-3xl h-16 grid  bg-base-300 place-items-center' src=${image} alt="Movie" />
               </div>
                <div class="card-body ">
@@ -65,13 +56,19 @@ const searchDataDisplay = (posts) => {
             </div>
       `;
       cardContainer.appendChild(div);
-      
    });
 };
 
-   // const add = () => {
-      
-   // };
+const allDataLoader =()=>{
+       const addDetails = document.getElementById("count-read");
+       const div = document.createElement('div');
+       div.classList = "flex justify-between px-3 py-4 bg-gray-200 rounded my-3";
+       div.innerHTML = `
+      <h2 class="font-bold text-xl">10 Kids Unaware of Their Costume</h2>
+      <p><i class="fa-solid fa-eye"></i> 1568 </p>
+       `;
+       addDetails.appendChild(div)
+}
 
 let count = 0;
 const readCount = (id) => {
@@ -79,7 +76,7 @@ const readCount = (id) => {
    const IdField = document.getElementById("mark-count");
    IdField.innerText = count;
    // add();
-   // allDataLoader();
+   allDataLoader();
 
    console.log(id);
 };
@@ -124,11 +121,10 @@ latestDataDisplay = (items) => {
   </div>
 </div>
       `;
-      latestCard.appendChild(div)
+      latestCard.appendChild(div);
    });
 };
 latestCardData();
-searchDataLoader('comedy')
+searchDataLoader("comedy");
 
-// add.classList.add("bg-neutral-800");
-// console.log(add);
+
