@@ -6,13 +6,24 @@ const searchDataLoader = async (category) => {
 
 const searchDataDisplay = (posts) => {
    //  console.log(posts);
+   
    const cardContainer = document.getElementById("card-contain");
    cardContainer.innerText = '';
-
+    
+     
    // console.log(cardContainer);
    posts.forEach((post) => {
-      console.log(post);
+      // console.log(post);
       const { category, title, description, posted_time, comment_count, author, image, isActive, view_count, id } = post;
+      const add = document.getElementById("card-pin");
+      
+      
+      if(isActive){
+         console.log('up');
+      }
+      else{
+         console.log('not');
+      }
 
       const div = document.createElement("div");
       div.classList = "card bg-base-100 shadow-xl col-span-2";
@@ -21,7 +32,7 @@ const searchDataDisplay = (posts) => {
     <div class="card card-side bg-base-100 shadow-xl p-2 ">
     
               <div class='indicator'>
-              <span id="card-pin" class="indicator-item badge badge-secondary"></span>
+              <span id="card-pin" class="indicator-item badge bg-neutral-800"></span>
                <img class='w-16 rounded-3xl h-16 grid  bg-base-300 place-items-center' src=${image} alt="Movie" />
               </div>
                <div class="card-body ">
@@ -54,34 +65,20 @@ const searchDataDisplay = (posts) => {
             </div>
       `;
       cardContainer.appendChild(div);
+      
    });
 };
 
-// const allDataLoader = async (id)=>{
-//   const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts`);
-//    const data = await res.json();
-//    allDataDisplay(data.posts,id);
-// }
-// const allDataDisplay =(items,id)=>{
-//   const readDetails = document.getElementById("count-read");
-
-//    items.forEach(item =>{
-//     const {id} = item;
-//      console.log(id);
-//      const div = document.createElement('div')
-//      div.classList = 'px-3';
-//      div.innerHTML = `
-//      <p>${item.title}</p>
-//      `;
-//      readDetails.appendChild(div)
-//    })
-// }
+   // const add = () => {
+      
+   // };
 
 let count = 0;
 const readCount = (id) => {
    count = count + 1;
    const IdField = document.getElementById("mark-count");
    IdField.innerText = count;
+   // add();
    // allDataLoader();
 
    console.log(id);
@@ -103,7 +100,7 @@ const latestCardData = async () => {
 latestDataDisplay = (items) => {
    const latestCard = document.getElementById("latest-card");
    items.forEach((item) => {
-      console.log(item);
+      // console.log(item);
 
       const div = document.createElement("div");
 
@@ -131,3 +128,7 @@ latestDataDisplay = (items) => {
    });
 };
 latestCardData();
+searchDataLoader('comedy')
+
+// add.classList.add("bg-neutral-800");
+// console.log(add);
